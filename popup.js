@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function scrapZonaProp() {
 
     const cabecera = {
-        direccion: "#article-container > hgroup > h2",
+        direccion: "#map-section > div.section-location-property > h4",
         precio: "#article-container > div.posting-price > div.price-container > div > div > div > div.price-items > span > span",
         publicado: "#user-views > div > div:nth-child(1) > p",
         descripcion: "#longDescription",
@@ -53,16 +53,16 @@ function scrapZonaProp() {
     }
 
     const features_text = {
-        mts_totales: /Total/,
-        mts_cubiertos: /Cubierta/,
-        ambientes: /Ambiente|Ambientes/,
-        cochera: /Cochera|Cocheras/,
+        mts_totales: /tot[.]/,
+        mts_cubiertos: /cub[.]/,
+        ambientes: /amb[.]/,
+        cochera: /coch[.]/,
         banios: /Baño|Baños/,
-        antiguedad: /Antigüedad/
+        antiguedad: /Años|  Año/
     }
 
     try {
-        const items = document.querySelector("#article-container > hgroup > ul").querySelectorAll("li");
+        const items = document.querySelector("#section-icon-features-property").querySelectorAll("li");
         items.forEach(item => {
             const feature = item.textContent;
             for (const clave in features_text) {
@@ -106,5 +106,5 @@ function CopiarCadenaAlPortapapeles(cadena) {
    document.execCommand("copy");
    document.body.removeChild(textarea);
 
-   alert("Texto copiado al portapapeles: " + csv);
+   alert("Texto copiado al portapapeles: " + cadena);
 }
