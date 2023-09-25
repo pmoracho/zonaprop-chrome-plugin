@@ -19,11 +19,12 @@ function scrapZonaProp() {
 
     const cabecera = {
         direccion: "#map-section > div.section-location-property > h4",
-        precio: "#article-container > div.posting-price > div.price-container > div > div > div > div.price-items > span > span",
+        precio: "#article-container > div.price-container-property > div > div.price-value > span:nth-child(1) > span",
         publicado: "#user-views > div > div:nth-child(1) > p",
         descripcion: "#longDescription",
         titulo: "#article-container > hgroup > div",
-        inmobiliaria: "#react-publisher-card > div > div > span > h5"
+        inmobiliaria: "#react-publisher-card > div > div > span > h5",
+        expensas: "#article-container > div.price-container-property > div > div.price-extra > span"
     }
 
     const nuevoDiccionario = {
@@ -89,8 +90,8 @@ function escaparComillas(cadena) {
 
 function ObtenerDatosYCopiarAlPortapapeles() {
 
-    const propiedad = scrapZonaProp();
-    const csv = ['inmobiliaria', 'direccion', 'titulo', 'precio', 'mts_totales', 'mts_cubiertos', 'ambientes', 'cochera', 'banios', 'antiguedad', 'url']
+    const propiedad = scrapZonaProp();0
+    const csv = ['inmobiliaria', 'direccion', 'titulo', 'precio', 'mts_totales', 'mts_cubiertos', 'ambientes', 'cochera', 'banios', 'antiguedad', 'url', 'expensas']
         .map(clave => typeof propiedad[clave] === 'string' ? `"${escaparComillas(propiedad[clave])}"` : propiedad[clave])
         .join(',');
 
